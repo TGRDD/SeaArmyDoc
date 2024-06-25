@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CaptainData
   m_EditorClassIdentifier: 
   ManVariantsSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 13359e17779a339449ce85df6bd9d088, type: 3}
+  - {fileID: 21300000, guid: d64f6245da548cd479509d19364e8abe, type: 3}
+  - {fileID: 21300000, guid: 53386fb073d5ca148a2506d1738c8986, type: 3}
   WomanVariantsSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 2711057e8a209d842a539c712a43a8fb, type: 3}
+  - {fileID: 21300000, guid: 13a169c4204a645408d5cacfb7d5c3c7, type: 3}
+  - {fileID: 21300000, guid: ab9e33197b4c61e478d1ff720d1a9b58, type: 3}
   Description: "The Master on a bulk \ncarrier ship - is the highest-ranking \nofficer
     and the overall \nin charge of the vessel. \nThey are responsible \nfor the save
     and efficient operation \nof the ship, the crew, \nand the cargo. "
