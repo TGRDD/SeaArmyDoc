@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipRoleData : MonoBehaviour
+[CreateAssetMenu(fileName = "NewShipRoleData", menuName = "GameData/ShipRole")]
+public class ShipRoleData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public Sprite[] ManVariantsSprites;
+    public Sprite[] WomanVariantsSprites;
+
+    [Multiline]
+    public string Description;
+
+    private void OnValidate()
     {
-        
+        if (WomanVariantsSprites.Length != ManVariantsSprites.Length)
+        {
+            WomanVariantsSprites = new Sprite[ManVariantsSprites.Length];
+        }
     }
 }

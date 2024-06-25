@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9c3b08197047d4d9a317fc0f8905e3, type: 3}
+  m_Name: CaptainData
+  m_EditorClassIdentifier: 
+  ManVariantsSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  WomanVariantsSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Description: "The Master on a bulk \ncarrier ship - is the highest-ranking \nofficer
+    and the overall \nin charge of the vessel. \nThey are responsible \nfor the save
+    and efficient operation \nof the ship, the crew, \nand the cargo. "
