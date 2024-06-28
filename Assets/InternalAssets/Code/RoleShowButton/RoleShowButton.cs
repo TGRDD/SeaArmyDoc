@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
@@ -23,6 +22,7 @@ public class RoleShowButton : MonoBehaviour
 
     public void ShowData()
     {
-        DataPage page = Instantiate(dataPagePrefab, _root.transform).Inizialize(shipRoleData);
+        DataPage.staticRoleData = shipRoleData;
+        SceneManager.LoadScene("PageScene");
     }
 }

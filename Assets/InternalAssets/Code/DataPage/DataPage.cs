@@ -1,11 +1,15 @@
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DataPage : MonoBehaviour
 {
+    public static ShipRoleData staticRoleData;
     [Header("View")]
-    [SerializeField] private Slider _nationslider;
+    [SerializeField] private Button _nextNationButton;
     [SerializeField] private Button _womanSexButton;
     [SerializeField] private Button _manSexButton;
     [SerializeField] private Button _closeButton;
@@ -13,21 +17,27 @@ public class DataPage : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _description;
 
     [Header("Model")]
-    [SerializeField] private ShipRoleData _shipRoleData;
+    [SerializeField] private ShipRoleData _defaultShipRoleData;
 
-    private int _maxNationInex => _shipRoleData.ManVariantsSprites.Length - 1;
+    private int nationIndex = 0;
+    private int _maxNationInex => _defaultShipRoleData.ManVariantsSprites.Length - 1;
     private bool _isWoman = false;
+
+    private void Start()
+    {
+        if (staticRoleData == null) staticRoleData = _defaultShipRoleData;
+        Inizialize(staticRoleData);
+    }
 
     public DataPage Inizialize(ShipRoleData data)
     {
-        _shipRoleData = data;
+        _defaultShipRoleData = data;
         _characterImage.sprite = data.ManVariantsSprites[0];
-        _nationslider.maxValue = _maxNationInex;
 
         _womanSexButton.onClick.AddListener(SetWomanSex);
         _manSexButton.onClick.AddListener(SetManSex);
         _closeButton.onClick.AddListener(CloseTab);
-        _nationslider.onValueChanged.AddListener(UpdateView);
+        _nextNationButton.onClick.AddListener(ChangeNation);
 
         return this;
     }
@@ -46,34 +56,44 @@ public class DataPage : MonoBehaviour
 
     public void CloseTab()
     {
-        Destroy(gameObject);
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    public void ChangeNation()
+    {
+        nationIndex++;
+
+        if (nationIndex > _maxNationInex)
+        {
+            nationIndex = 0;
+        }
+
+        UpdateView();
+    }
+
+    public void ZoomPhoto()
+    {
+        if (_characterImage.transform.localScale.x > 1.5) return;
+        _characterImage.transform.localScale = _characterImage.transform.localScale + Vector3.one / 10;
+    }
+
+    public void UnzoomPhoto()
+    {
+        if (_characterImage.transform.localScale.x == 1) return;
+        _characterImage.transform.localScale = _characterImage.transform.localScale - Vector3.one/10;
     }
 
     public void UpdateView()
     {
-        int index = (int)_nationslider.value;
+
 
         if (_isWoman)
         {
-            _characterImage.sprite = _shipRoleData.WomanVariantsSprites[index];
+            _characterImage.sprite = _defaultShipRoleData.WomanVariantsSprites[nationIndex];
         }
         else
         {
-            _characterImage.sprite = _shipRoleData.ManVariantsSprites[index];
-        }
-    }
-
-    public void UpdateView(float value)
-    {
-        int index = (int)value;
-
-        if (_isWoman)
-        {
-            _characterImage.sprite = _shipRoleData.WomanVariantsSprites[index];
-        }
-        else
-        {
-            _characterImage.sprite = _shipRoleData.ManVariantsSprites[index];
+            _characterImage.sprite = _defaultShipRoleData.ManVariantsSprites[nationIndex];
         }
     }
 }
